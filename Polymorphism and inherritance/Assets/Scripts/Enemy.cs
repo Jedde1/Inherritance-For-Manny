@@ -10,20 +10,20 @@ public class Enemy : Humanoid
     {
         Patrol
     }
-    public Transform waypointParent;
-    protected Transform[] waypoints;
-    public NavMeshAgent agent;
-    public GameObject self;
-    public int curWaypoint;
-    public AIState state;
+    public Transform waypointParent;//Determine central position of the waypoints
+    protected Transform[] waypoints;//Adds all waypoints into an array
+    public NavMeshAgent agent;//Uses a navmesh to allow the AI to move around and avoid places that it should not go
+    public GameObject self;//Allows the engine to determine what object is using the script
+    public int curWaypoint;//Tells the enemy what waypoint they just went to and what waypoint is next
+    public AIState state;//Uses the enums to tell what state the enemy is
     // Start is called before the first frame update
     void Start()
     {
-        waypoints = waypointParent.GetComponentsInChildren<Transform>();
-        agent = self.GetComponent<NavMeshAgent>();
-        curWaypoint = 1;
-        agent.speed = speed / 2;
-        Patrol();
+        waypoints = waypointParent.GetComponentsInChildren<Transform>();//uses the waypoints in the waypoint parent
+        agent = self.GetComponent<NavMeshAgent>();//tells the enemy to stay in the navmesh
+        curWaypoint = 1;//sets default waypoint
+        agent.speed = speed / 2;//tells the enemy to move at half the speed at which the humaoid and determined
+        Patrol();//tells the AI to use patrol function
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class Enemy : Humanoid
         }
         state = AIState.Patrol;
         
-        agent.speed = speed / 2;
+        agent.speed = speed / 2;//Tells enemy to move at half speed
 
         //Follow waypoints
         //Set agent to target
@@ -51,7 +51,7 @@ public class Enemy : Humanoid
         {
             if (curWaypoint < waypoints.Length - 1)
             {
-                //If so go to next waypoin
+                //If so go to next waypoint
                 curWaypoint++;
             }
             else

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Humanoid : MonoBehaviour
 {
-    public int speed = 5;
-    public int Health = 10;
-    public float _gravity = 100;
+    public int speed = 5;//Sets speed for player and enemy
+    public float _gravity = 100;//Sets gravity for player and enemy
     public Transform player;
 
     // Start is called before the first frame update
